@@ -38,6 +38,33 @@ f2 B = True
 
 ## Isomorphic
 
-** (Bool, a), Either a a
+### (Bool, a), Either a a
+a)  
+|(Bool, a)| = |Either a a|
+2a = |Left a| + |Right a|
+2a = a + a  
+2a = 2a 
 
-(|Bool|, |a|) = (2, |a|)
+b)  
+aToB :: (Bool, a) -> Either a a  
+aToB (True, a) = Left a  
+aToB (False, a) = Right a  
+
+bToA :: Either a a -> (Bool, a)  
+bToA (Left a) = (True, a)  
+bToA (Right a) = (False, a)  
+
+
+### (a -> b -> c), (a,b) -> c
+
+a) 
+$|a -> b -> c| = |(a,b) -> c|$  
+$c^{b^a} = c^{(a*b)}$  
+$c^{(b*a)} = c^{(a*b)}$
+
+b)  
+aToB :: (a -> b -> c) -> ((a,b) -> c)  
+aToB f = \(x, y) -> f x y
+
+bToA :: ((a,b) -> c) -> (a -> b -> c)  
+bToA f = \x y -> f (x, y)
