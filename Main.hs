@@ -7,4 +7,8 @@ import System.Environment
 
 main :: IO ()
 main = do
-  putStrLn "Load the current weather from https://wttr.in"
+    args <- getArgs
+    manager <- newManager tlsManagerSettings
+    request <- parseRequest ("https://wttr.in/~" ++ (head args) ++ "?format=3")
+    response <- httpLbs request manager
+    L8.putStrLn (responseBody response)

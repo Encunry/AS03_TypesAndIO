@@ -127,7 +127,7 @@ data Tree a = Branch (Tree a) a (Tree a) | Empty
 
 foldTree :: (b -> a -> b -> b) -> b -> Tree a -> b
 foldTree _ b Empty = b
-foldTree f b (Branch l a r) = f (foldTree f b l) a (foldTree f b r)
+foldTree f b (Branch l a r) = f (foldTree f b l) a (foldTree f b r)+
 ```
 
 Observe how the recursive part of (Branch **(Tree a)** a **(Tree a)**) appear as a further parameters (**b** -> a -> **b** -> b).
